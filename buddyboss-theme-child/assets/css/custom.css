@@ -139,10 +139,14 @@ hr {
 .next-session-container {
     display: flex;
     position: relative;
-    height: 200px;
+    height: 100%;
     border-radius: 32px;
     border: 1px solid #B8C0CC;
     background: #FFF;
+    /* background-image: url('https://chessystem.com/wp-content/uploads/2024/07/2150169922.webp'); */
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
     padding: var(--large-gap);
     justify-content: space-between;
     align-items: center;
@@ -221,8 +225,8 @@ button.session-join {
 
 .user-info-container {
     display: flex;
-    width: 380px;
-    height: 480px;
+    width: 100%;
+    height: 100%;
     padding: var(--large-gap);
     flex-direction: column;
     align-items: center;
@@ -405,6 +409,7 @@ span.gamipress-inline-achievements-separator {
 /* HEADER COINS START */
 .gamipress-header-container {
     margin-right: 16px;
+    width: 100%;
 }
 
 .gamipress-header-container .gamipress-user-points-description .gamipress-user-points-amount {
@@ -413,6 +418,7 @@ span.gamipress-inline-achievements-separator {
 
 .gamipress-header-container .gamipress-user-points div.gamipress-points {
     align-items: center;
+    width: fit-content;
 }
 
 .gamipress-header-container .gamipress-user-points {
@@ -421,23 +427,66 @@ span.gamipress-inline-achievements-separator {
     gap: 16px;
 }
 
-.gamipress-header-container .gamipress-user-points-image.gamipress-user-points-coin-image img {
-    width: 48px;
-    min-width: 32px;
-    height: 48px;
-    object-fit: contain;
+.gamipress-header-container .gamipress-user-points {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 16px;
+    flex-direction: row;
+    align-content: center;
+    justify-content: flex-end;
+    align-items: center;
+    margin-left: auto;
 }
 
-@media screen and (max-width: 1200px) {
+.gamipress-header-container .gamipress-user-points-image img {
+
+    min-width: 32px;
+    width: 32px;
+
+    object-fit: contain;
+
+}
+
+.gamipress-user-points-image.gamipress-user-points-coin-image img {
+    filter: drop-shadow(1px 1px 4px #FFA905);
+}
+
+
+.gamipress-user-points-image.gamipress-user-points-exp-image img {
+    filter: drop-shadow(1px 1px 4px blue);
+}
+
+/* LESS THAN 1200px */
+@media screen and (max-width: 1280px) {
     :root {
         --large-gap: 16px;
         --large-gap2: 16px;
     }
+
+    .user-info-container,
+    .progress-rank.user-current-rank-v1 {
+        width: 280px;
+        max-width: 280px;
+    }
+
+    #points-exchange-container form#gamipress-points-exchanges-form-1 {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+
+    }
 }
 
+/* LESS THAN 970 */
 @media screen and (max-width: 970px) {
     .right-side-dashboard {
         grid-area: 1 / 9 / 4 / 13;
+    }
+
+    .user-info-container,
+    .progress-rank.user-current-rank-v1 {
+        width: 200px;
+        max-width: 200px;
     }
 
     .progress-rank {
@@ -450,7 +499,7 @@ span.gamipress-inline-achievements-separator {
 
     .next-session-container {
         flex-direction: column;
-        height: 480px;
+        height: fit-content;
         justify-content: center;
         gap: var(--large-gap);
     }
@@ -488,20 +537,20 @@ span.gamipress-inline-achievements-separator {
 
     .progress-rank {
         order: 3;
-        width: 100%;
+
     }
 
     .bottom-section-container {
         order: 4;
     }
 
-    .user-info-container {
-        width: 100%;
+    .user-info-container,
+    .progress-rank {
+        width: 100% !important;
+        max-width: unset !important;
     }
 
-    .next-session-container {
-        height: 280px;
-    }
+
 
     .session-date,
     .latest-achievements-title h3 {
@@ -561,3 +610,139 @@ media screen and (min-width: 1200px) {
 }
 
 */
+
+#simple-test-container {
+    position: relative;
+}
+
+#loading-indicator {
+    position: absolute;
+    margin-right: auto;
+    top: 50%;
+    right: 80%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 80px;
+    height: 80px;
+    z-index: 999;
+    /* Ensure it appears on top of other content inside the container */
+}
+
+.loader {
+    border: 8px solid rgba(0, 0, 0, 0.1);
+    border-radius: 50%;
+    border-top: 8px solid #3498db;
+    /* Change color to suit your theme */
+    width: 40px;
+    height: 40px;
+    animation: spin 1.5s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* POINTS EXCHANGE */
+
+#points-exchange-container * {
+    border: none;
+}
+
+
+form#gamipress-points-exchanges-form-1 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    grid-column-gap: 4px;
+    grid-row-gap: 4px;
+
+}
+
+
+
+fieldset#gamipress-points-exchanges-form-wrapper {
+    width: 100%;
+}
+
+#points-exchange-container form fieldset {
+    margin: 0;
+    padding: 0;
+}
+
+#points-exchange-container fieldset {
+    width: 100%;
+    height: 100%;
+    z-index: 999;
+    padding: 0;
+    margin: 0;
+}
+
+fieldset.gamipress-points-exchanges-form-from-details {
+    grid-area: 1 / 1 / 2 / 2;
+}
+
+fieldset.gamipress-points-exchanges-form-to-details {
+    grid-area: 2 / 1 / 3 / 2;
+}
+
+fieldset.gamipress-points-exchanges-form-to {
+    grid-area: 1 / 2 / 2 / 3;
+}
+
+fieldset.gamipress-points-exchanges-form-exchange-rate-details {
+    grid-area: 2 / 2 / 3 / 3;
+}
+
+fieldset.gamipress-points-exchanges-form-from {
+    grid-area: 1 / 3 / 2 / 4;
+}
+
+#points-exchange-container fieldset.gamipress-points-exchanges-form-from input {
+    width: 100%;
+    border: 2px solid;
+}
+
+p.gamipress-points-exchanges-form-submit {
+    grid-area: 2 / 3 / 3 / 4;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+
+
+#points-exchange-container label {
+    font-weight: bold;
+    font-size: 24px;
+}
+
+.session-top-header {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.session-content-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+}
+
+@media screen and (max-width: 1025px) {
+    .session-content-container {
+        flex-direction: column;
+        justify-content: center;
+        gap: 16px;
+    }
+}

@@ -18,7 +18,7 @@ if (!defined('ABSPATH')) exit; // Exit if accessed directly
 if (!is_user_logged_in()) {
     wp_redirect(esc_url(site_url('/')));
     exit;
-  }
+}
 get_header();
 ?>
 
@@ -28,33 +28,39 @@ $page_url = esc_url(get_permalink($page->ID));
 $current_user_id = get_current_user_id();
 $user_data = get_userdata($current_user_id);
 $user_slug = $user_data->user_nicename;
+$session_url = function_exists('get_field') && get_field("session_url") ? get_field("session_url") : "#";
 ?>
 
 <div id="primary" class="content-area bb-grid-cell">
     <main id="main" class="site-main">
         <div class="parent-container">
             <div class="left-side-dashboard">
-                <div class="next-session-container">
-                    <span class="your-next-session">Your Next Session</span>
-                    <div class="session-title-container">
-                        <h3 class="session-title"><?php the_field('session_name'); ?></h3>
+               <div class="next-session-container" id="points-exchange-container">
+
+                  <?php
+                    // echo do_shortcode('[gamipress_points_exchange allow_input_amount="yes" amount="10" allow_input_from="no" from="exp" allow_input_to="no" to="coin" button_text="Exchange"]')
+                    ?>
+                    <div class="session-top-header">
+                        <p>Your Live Sessions</p>
+
+                        <div class="session-content-container">
+                            <h3 class="session-title-text">Find Your Next Session Time:</h2>
+                                <a href=<?php echo $session_url ?>>
+
+                                    <button>Live Sessions</button>
+                                </a>
+                        </div>
                     </div>
-                    <div class="session-join-container">
-                        <div class="session-date"><?php the_field('next_session_time'); ?></div>
-                        <a href="<?php the_field('session_url') ?>">
-                            <button class="session-join">Join</button>
-                        </a>
 
 
-                    </div>
                 </div>
                 <div class="user-points-container">
                     <div class="coin-view coin-type-1">
-                        <a class="how-to-collect" href="">How to collect?</a>
+                        <!-- <a class="how-to-collect" href="">How to collect?</a> -->
                         <?php echo do_shortcode('[gamipress_user_points type="coin" columns="1" thumbnail="yes" thumbnail_size="100"  align="center"]') ?>
                     </div>
                     <div class="coin-view coin-type-2">
-                        <a class="how-to-collect" href="">How to collect?</a>
+                        <!-- <a class="how-to-collect" href="">How to collect?</a> -->
                         <?php echo do_shortcode('[gamipress_user_points type="exp" columns="1" thumbnail="yes" thumbnail_size="100"  align="center"]') ?>
                     </div>
                 </div>
@@ -93,9 +99,10 @@ $user_slug = $user_data->user_nicename;
 
             </div>
             <div class="progress-rank user-current-rank-v1">
-                <h4>Your Next Rank</h4>
+                <h4>Next Rank</h4>
                 <?php echo do_shortcode('[gamipress_user_rank type="level" prev_rank="no" current_rank="" next_rank="yes" excerpt="no" requirements="yes" current_user="yes" columns="1" title="yes" align="center" layout="top"  link="no" ]') ?>
                 <p>“He who has no patience has nothing”</p>
+                <a href="<?php echo esc_url(site_url('/ranks')) ?>">All Ranks</a>
             </div>
 
             <div class="bottom-section-container">
@@ -109,6 +116,8 @@ $user_slug = $user_data->user_nicename;
                 </div>
 
             </div>
+
+
 
         </div>
 

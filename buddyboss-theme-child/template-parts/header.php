@@ -6,6 +6,10 @@ $logo_dark_id = buddyboss_theme_get_option('logo_dark', 'id');
 $logo_dark    = ($show && $show_dark && $logo_dark_id) ? wp_get_attachment_image($logo_dark_id, 'full', '', array('class' => 'bb-logo bb-logo-dark')) : '';
 ?>
 <div class="container site-header-container flex default-header">
+    
+   
+    
+    
     <a href="#" class="bb-toggle-panel"><i class="bb-icon-l bb-icon-sidebar"></i></a>
     <?php
     if (buddyboss_is_learndash_inner() && !buddyboss_theme_ld_focus_mode()) {
@@ -32,8 +36,20 @@ $logo_dark    = ($show && $show_dark && $logo_dark_id) ? wp_get_attachment_image
 
 
     if (is_user_logged_in()) {
-        get_template_part('template-parts/gamipress-points-header');
-    };
+        
+       echo  '<div id="simple-test-container">';
+       echo '<div id="loading-indicator" style="display:none;"><div class="loader"></div>';
+       echo '</div>';
+   echo '</div>';
+    
+    
+
+        // get_template_part('template-parts/gamipress-points-header');
+       };
     ?>
-    <?php get_template_part('template-parts/header-aside'); ?>
+    <?php 
+     get_template_part('template-parts/header-aside');
+
+  
+    ?>
 </div>

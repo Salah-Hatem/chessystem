@@ -58,6 +58,7 @@ $logo_class         = ($logo_align <= 1 && (!buddyboss_is_learndash_inner() && !
             </<?php echo $elem; ?>>
         </div>
         <div class="header-aside">
+            <div id="gaimpress-points-displayer"></div>
             <?php
             if (
                 (
@@ -101,11 +102,16 @@ $logo_class         = ($logo_align <= 1 && (!buddyboss_is_learndash_inner() && !
                         <span class="search-separator bb-separator"></span>
             <?php endif;
                 endif;
-
-
-                if (is_user_logged_in()) {
-                    get_template_part('template-parts/gamipress-points-header');
-                };
+                
+                
+                if (is_user_logged_in()) { ?>
+                    <div id="simple-test-container">
+                        <div id="loading-indicator" style="display:none;">
+                            <div class="loader"></div>
+                        </div>
+                        <!-- AJAX content will be loaded here -->
+                    </div>
+            <?php    };
 
                 if ($show_messages && function_exists('bp_is_active') && bp_is_active('messages')) :
                     get_template_part('template-parts/messages-dropdown');
