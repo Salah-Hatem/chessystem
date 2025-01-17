@@ -1,0 +1,1 @@
+<div class="gamipress-header-container"><?php echo do_shortcode('[gamipress_user_points type="all" thumbnail="yes" thumbnail_size="48" label="no" layout="left" align="center"]') ?></div>
